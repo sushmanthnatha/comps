@@ -3,6 +3,7 @@ import Counter from '../components/Counter';
 import Button from '../components/Button';
 import useCounter from '../hooks/useCounter';
 import Panel from '../components/Panel';
+import { produce } from 'immer';
 
 const actionTypes = {
   INCREMENT: 'INCREMENT',
@@ -14,13 +15,18 @@ const actionTypes = {
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
-      return { ...state, count: state.count + 1 };
+          state.count = state.count + 1 
+          return
     case actionTypes.DECREMENT:
-      return { ...state, count: state.count - 1 };
+          state.count = state.count - 1 
+          return
     case actionTypes.CHANGE_VALUE:
-      return { ...state, valueToAdd: action.payload };
-    case actionTypes.ADD_VALUE:
-      return { ...state, count: state.count + state.valueToAdd, valueToAdd: 0 };
+          state.valueToAdd = action.payload
+          return
+      case actionTypes.ADD_VALUE:
+          state.count = state.count + state.valueToAdd
+          state.valueToAdd = 0
+          return
     default:
       return state;
   }
@@ -29,7 +35,7 @@ function CounterPage({ initialCount = 0 }) {
   //   const [count, setCount] = useState(initialCount);
   //   const [valueToAdd, setValueToAdd] = useState(0);
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer(produce(reducer), {
     count: initialCount,
     valueToAdd: 0,
   });
