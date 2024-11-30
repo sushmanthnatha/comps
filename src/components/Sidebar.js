@@ -5,6 +5,8 @@ function Sidebar() {
     { label: 'Accordion', path: '/' },
     { label: 'Dropdown', path: '/dropdown' },
     { label: 'Button', path: '/buttons' },
+    { label: 'Modal', path: '/modal' },
+    { label: 'Counter', path: '/counter' },
   ];
 
   const renderedItems = links.map((link) => (

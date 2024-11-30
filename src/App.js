@@ -6,10 +6,12 @@ import DropdownPage from './pages/DropdownPage';
 import Link from './components/Link';
 import Route from './components/Route';
 import Sidebar from './components/Sidebar';
+import ModalPage from './pages/ModalPage';
+import CounterPage from './pages/CounterPage';
 
 function App() {
   return (
-    <div className="container mx-auto grid grid-cols-6 gap-4 mt-4 ">
+    <div className="container mx-auto grid grid-cols-6 gap-4 mt-4 relative">
       <Sidebar />
       <div className="col-span-5">
         <Route path="/">
@@ -23,6 +25,12 @@ function App() {
         </Route>
         <Route path="/buttons">
           <ButtonPage />
+        </Route>
+        <Route path="/modal">
+          <ModalPage />
+        </Route>
+        <Route path="/counter">
+          <CounterPage initialCount={10} />
         </Route>
       </div>
     </div>
